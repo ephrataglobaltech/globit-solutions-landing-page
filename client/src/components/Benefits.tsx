@@ -1,5 +1,8 @@
 import { Card } from "@/components/ui/card";
-import dashboardImage from "@assets/generated_images/Student_management_dashboard_mockup_35985486.png";
+import { Badge } from "@/components/ui/badge";
+import desktopDashboard from "@assets/generated_images/Desktop_dashboard_view_5a1cf910.png";
+import mobileDashboard from "@assets/generated_images/Mobile_dashboard_view_3d5a3d1a.png";
+import tabletDashboard from "@assets/generated_images/Tablet_dashboard_view_dd698c6a.png";
 
 const benefits = [
   {
@@ -68,14 +71,48 @@ export default function Benefits() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-lg overflow-hidden border shadow-lg">
-              <img
-                src={dashboardImage}
-                alt="Dashboard preview"
-                className="w-full h-full object-cover"
-                data-testid="img-dashboard"
-              />
+          <div className="space-y-6">
+            <div className="text-center mb-4">
+              <h3 className="text-2xl font-bold mb-2">Fully Responsive</h3>
+              <p className="text-muted-foreground">Access your data anywhere, on any device</p>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Badge variant="secondary" className="w-full justify-center">Desktop</Badge>
+                <div className="aspect-[16/10] rounded-md overflow-hidden border shadow-lg">
+                  <img
+                    src={desktopDashboard}
+                    alt="Desktop dashboard"
+                    className="w-full h-full object-cover"
+                    data-testid="img-dashboard-desktop"
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Badge variant="secondary" className="w-full justify-center">Tablet</Badge>
+                <div className="aspect-[4/3] rounded-md overflow-hidden border shadow-lg">
+                  <img
+                    src={tabletDashboard}
+                    alt="Tablet dashboard"
+                    className="w-full h-full object-cover"
+                    data-testid="img-dashboard-tablet"
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Badge variant="secondary" className="w-full justify-center">Mobile</Badge>
+                <div className="aspect-[9/16] rounded-md overflow-hidden border shadow-lg">
+                  <img
+                    src={mobileDashboard}
+                    alt="Mobile dashboard"
+                    className="w-full h-full object-cover"
+                    data-testid="img-dashboard-mobile"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

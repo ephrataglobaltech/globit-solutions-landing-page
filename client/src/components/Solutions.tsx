@@ -57,8 +57,10 @@ export default function Solutions() {
                 data-testid={`card-solution-${index}`}
               >
                 <CardHeader className="space-y-4">
-                  <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className={`h-12 w-12 rounded-md flex items-center justify-center ${
+                    index % 2 === 0 ? 'bg-primary/10' : 'bg-secondary/10'
+                  }`}>
+                    <Icon className={`h-6 w-6 ${index % 2 === 0 ? 'text-primary' : 'text-secondary'}`} />
                   </div>
                   <CardTitle className="text-xl">{solution.title}</CardTitle>
                   <CardDescription className="text-base leading-relaxed">

@@ -52,9 +52,9 @@ export default function Hero() {
               </Button>
               <Button
                 size="lg"
-                variant="outline"
+                variant="secondary"
                 onClick={scrollToSolutions}
-                className="text-base backdrop-blur-sm"
+                className="text-base"
                 data-testid="button-hero-learn"
               >
                 Learn More
