@@ -16,14 +16,31 @@ export default function Contact() {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", email: "", organization: "", message: "" });
+  
+    const form = e.target as HTMLFormElement;
+    const formDataToSend = new FormData(form);
+  
+    try {
+      await fetch("/", {
+        method: "POST",
+        body: formDataToSend,
+      });
+  
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+  
+      setFormData({ name: "", email: "", organization: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Something went wrong.",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -40,58 +57,73 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <Card className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              {/* Netlify Hidden Inputs */}
+              <input type="hidden" name="form-name" value="contact" />
+              <p className="hidden">
+                <label>
+                  Don’t fill this out if you’re human: <input name="bot-field" />
+                </label>
+              </p>
+            
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input
                   id="name"
+                  name="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="John Doe"
                   required
-                  data-testid="input-name"
                 />
               </div>
-
+            
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="john@example.com"
                   required
-                  data-testid="input-email"
                 />
               </div>
-
+            
               <div className="space-y-2">
                 <Label htmlFor="organization">Organization Name</Label>
                 <Input
                   id="organization"
+                  name="organization"
                   value={formData.organization}
                   onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                   placeholder="Your School or Organization"
                   required
-                  data-testid="input-organization"
                 />
               </div>
-
+            
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
                 <Textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell us about your needs..."
                   rows={4}
                   required
-                  data-testid="input-message"
                 />
               </div>
-
-              <Button type="submit" className="w-full" data-testid="button-submit">
+            
+              <Button type="submit" className="w-full">
                 Send Message
               </Button>
             </form>
