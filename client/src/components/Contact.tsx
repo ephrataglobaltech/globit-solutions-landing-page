@@ -120,7 +120,7 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold mb-1">Call Us</h3>
                   <p className="text-muted-foreground" data-testid="text-phone">
-                    +1 (555) 123-4567
+                    +234 (806) 300-5412
                   </p>
                 </div>
               </div>
@@ -134,8 +134,8 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold mb-1">Visit Us</h3>
                   <p className="text-muted-foreground" data-testid="text-address">
-                    123 Tech Boulevard, Suite 400<br />
-                    San Francisco, CA 94105
+                    87, Amosu Igboro street, Alasia_Ijanikin<br />
+                    Lagos, Nigeria
                   </p>
                 </div>
               </div>
